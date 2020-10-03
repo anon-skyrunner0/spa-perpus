@@ -25,8 +25,8 @@ include "core/connection.php";
 	// perintah sprintf("%03s", $urutan); berguna untuk membuat string menjadi 3 karakter
 	// misalnya perintah sprintf("%03s", 15); maka akan menghasilkan '015'
 	// angka yang diambil tadi digabungkan dengan kode huruf yang kita inginkan, misalnya BRG 
-	$huruf = "LM";
-	$idFinal = $huruf . sprintf("%06s", $urutan);
+	$kode = "LM";
+	$idFinal = $kode . sprintf("%06s", $urutan);
 ?>
     <div class="container">
         <h1>Data Mahasiswa</h1>
