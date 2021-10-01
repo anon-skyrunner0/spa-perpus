@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!--Adam Firdaus 4311901038 -->
+<!--Adam Firdaus 4311901038 -->
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=7">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>e-Librarian | SPA Services</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/datables/dataTables.bootstrap4.min.css">
@@ -11,106 +12,112 @@
     <script src="assets/datables/jquery.dataTables.min.js"></script>
     <script src="assets/datables/dataTables.bootstrap4.min.js"></script>
     <script type="text/javascript">
-    $(document).ready(function(){
-    //data load
-    loadData();
-    
-    //form add loader
-    $("#contentData").on("click","#addButton",function(){
-        $.ajax({
-            url: 'application/add.php',
-            type: 'get',
-            success: function(data){
-                $('#contentData').html(data);
-            }
-        });
-    });
+        $(document).ready(function () {
+            //data load
+            loadData();
 
-    //form edit loader
-    $("#contentData").on("click","#editButton",function(){
-        var id_member = $(this).attr("value");
-        $.ajax({
-            url: 'application/edit.php',
-            type: 'get',
-            data:{
-                id_member : id_member
-            },
-            success: function(data){
-                $('#contentData').html(data);
-            }
-        });
-    });
+            //form add loader
+            $("#contentData").on("click", "#addButton", function () {
+                $.ajax({
+                    url: 'application/add.php',
+                    type: 'get',
+                    success: function (data) {
+                        $('#contentData').html(data);
+                    }
+                });
+            });
 
-    //cancel button
-    $("#contentData").on("click","#cancelButton",function(){
-        loadData();
-    });
+            //form edit loader
+            $("#contentData").on("click", "#editButton", function () {
+                var id_member = $(this).attr("value");
+                $.ajax({
+                    url: 'application/edit.php',
+                    type: 'get',
+                    data: {
+                        id_member: id_member
+                    },
+                    success: function (data) {
+                        $('#contentData').html(data);
+                    }
+                });
+            });
 
-    //save case
-    $("#contentData").on("submit", "#formAdd", function(e) {
-        e.preventDefault();
-        $.ajax({
-            url: 'application/core/services.php?action=save',
-            type: 'post',
-            data: $(this).serialize(),
-            success: function(data) {
-                alert(data);
+            //cancel button
+            $("#contentData").on("click", "#cancelButton", function () {
                 loadData();
-            }
-        });
-    });
+            });
 
-    //edit case
-    $("#contentData").on("submit", "#formEdit", function(e) {
-        e.preventDefault();
-        $.ajax({
-            url: 'application/core/services.php?action=edit',
-            type: 'post',
-            data: $(this).serialize(),
-            success: function(data) {
-                alert(data);
-                loadData();
-            }
-        });
-    });
+            //save case
+            $("#contentData").on("submit", "#formAdd", function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: 'application/core/services.php?action=save',
+                    type: 'post',
+                    data: $(this).serialize(),
+                    success: function (data) {
+                        alert(data);
+                        loadData();
+                    }
+                });
+            });
 
-    //remove case
-    $("#contentData").on("click", "#DeleteButton", function() {
-        var id_member = $(this).attr("value");
-        $.ajax({
-            url: 'application/core/services.php?action=delete',
-            type: 'post',
-            data: {id_member: id_member},
-            success: function(data) {
-                alert(data);
-                loadData();
-            }
-        });
-    });
+            //edit case
+            $("#contentData").on("submit", "#formEdit", function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: 'application/core/services.php?action=edit',
+                    type: 'post',
+                    data: $(this).serialize(),
+                    success: function (data) {
+                        alert(data);
+                        loadData();
+                    }
+                });
+            });
 
-})
+            //remove case
+            $("#contentData").on("click", "#DeleteButton", function () {
+                var id_member = $(this).attr("value");
+                $.ajax({
+                    url: 'application/core/services.php?action=delete',
+                    type: 'post',
+                    data: {
+                        id_member: id_member
+                    },
+                    success: function (data) {
+                        alert(data);
+                        loadData();
+                    }
+                });
+            });
 
-    function loadData() {
-        $.ajax({
-            url: 'application/main.php',
-            type: 'get',
-            success: function(data) {
-                $('#contentData').html(data);
-            }
-        });
-    }
-    $(document).ready(function(){
+        })
+
+        function loadData() {
+            $.ajax({
+                url: 'application/main.php',
+                type: 'get',
+                success: function (data) {
+                    $('#contentData').html(data);
+                }
+            });
+        }
+        $(document).ready(function () {
             $("#myTable").DataTable();
         });
     </script>
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light"><a class="navbar-brand" href="#"><i class="fa fa-book fa-2x"></i> e-Librarian</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span></button></nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light"><a class="navbar-brand" href="#"><i
+                class="fa fa-book fa-2x"></i> e-Librarian</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span></button></nav>
     <div class="container">
         <div id="contentData">
         </div>
     </div>
 </body>
+
 </html>
